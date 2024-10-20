@@ -1,22 +1,45 @@
 import * as d3 from "d3";
-class ColorStats {
 
+function prepareData(deck) {
+    const data = [
+        { color: 'White', count: 0 },
+        { color: 'Blue', count: 0 },
+        { color: 'Black', count: 0 },
+        { color: 'Red', count: 0 },
+        { color: 'Green', count: 0 },
+        { color: 'Colorless', count: 0 }
+    ];
+
+    Object.values(deck).forEach(({card, count}) => {
+        const manaCost = card.manaCost.replace(/[{}]/g, '').split('');
+        
+        manaCost.forEach(mana => {
+            if (!isNaN(mana)) {
+                data[5].count += parseInt(mana) * count;
+            } else {
+                const colorIndex = ['W', 'U', 'B', 'R', 'G'].indexOf(mana);
+                if (colorIndex !== -1) {
+                    data[colorIndex].count += 1 * count;
+                }
+            }
+        });
+    });
+
+    return data;
+}
+
+class ColorStats {
     constructor() {
     }
 
-    buildStats(element){
-        const data = [
-            { color: 'White', count: 15 },
-            { color: 'Blue', count: 12 },
-            { color: 'Black', count: 8 },
-            { color: 'Red', count: 10 },
-            { color: 'Green', count: 18 },
-            { color: 'Colorless', count: 7 }
-        ];
+    buildStats(element, deck){
+        const data = prepareData(deck);
 
         const width = 200;
         const height = 200;
         const radius = Math.min(width, height) / 2;
+
+        d3.select(element).selectAll("*").remove();
 
         const color = d3.scaleOrdinal()
             .domain(data.map(d => d.color))

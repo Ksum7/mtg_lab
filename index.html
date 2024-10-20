@@ -1,46 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>MTG Lab</title>
-    <meta charset="UTF-8" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Deck Builder</title>
     <script src="src/index.js" type="module"></script>
     <link href="styles/app.css" rel="stylesheet">
 </head>
-
 <body>
 <header>
     <h1>MTG Deck Builder</h1>
 </header>
-    <main class="main">
-        <div id="menu">
-            <h2>Cards</h2>
-            <div id="listContainer"></div>
+
+<main class="main">
+    <div id="menu">
+        <div id="search">
+            <input type="text" id="searchInput" placeholder="Search cards by name" />
+            <button id="searchButton">Search</button>
         </div>
 
-        <div class="content">
-            <div id="cardsContainer">
-                <h1 style="display: flex; justify-content: center;">
-                    REPLACE WITH ACTUAL CONTENT
-                </h1>
+        <h2>Cards</h2>
+        <div id="listContainer"></div>
+
+        <div id="pagination">
+            <button id="prevPage">Previous Page</button>
+            <button id="nextPage">Next Page</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div id="deckContainer" class="deck-container">
+            <h2>Your Deck</h2>
+            <div id="deckCards"></div>
+        </div>
+        <div id="cardsContainer">
+            <h2>Card Details</h2>
+            <div id="cardDetails">
+                <p>Select a card to view details</p>
             </div>
         </div>
-        <div id="stats">
-            <h2>Stats</h2>
-            <div class="widgets">
-                <div id = "manaStats">
+    </div>
 
-                </div>
-                <div id = "colorStats">
-
-                </div>
-            </div>
-
+    <div id="stats">
+        <h2>Stats</h2>
+        <div class="widgets">
+            <div id="manaStats"></div>
+            <div id="colorStats"></div>
         </div>
-    </main>
+    </div>
+</main>
 
-<footer>
-
-</footer>
+<footer></footer>
 </body>
 </html>
